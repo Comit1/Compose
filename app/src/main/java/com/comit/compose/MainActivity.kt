@@ -16,6 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.comit.compose.chart.ChartActivity
+import com.comit.compose.lifecycle.LifecycleActivity
 import com.comit.compose.navigation.NavigationActivity
 import com.comit.compose.ui.theme.ComposeTheme
 
@@ -62,6 +63,11 @@ class MainActivity : AppCompatActivity() {
 
         item = ButtonItem("Navigation") {
             startActivity(Intent(this, NavigationActivity::class.java))
+        }
+        items.add(item)
+
+        item = ButtonItem("Lifecycle") {
+            startActivity(Intent(this, LifecycleActivity::class.java))
         }
         items.add(item)
 

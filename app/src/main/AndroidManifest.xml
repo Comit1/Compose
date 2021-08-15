@@ -27,6 +27,7 @@
         <activity android:name=".chart.PieChartActivity" />
 
         <activity android:name=".navigation.NavigationActivity" />
+        <activity android:name=".lifecycle.LifecycleActivity" />
 
     </application>
 
