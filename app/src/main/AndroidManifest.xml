@@ -20,6 +20,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".chart.ChartActivity" />
+        <activity android:name=".chart.LineChartActivity" />
+        <activity android:name=".chart.BarChartActivity" />
+        <activity android:name=".chart.PieChartActivity" />
+
     </application>
 
 </manifest>

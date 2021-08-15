@@ -1,32 +1,32 @@
-package com.comit.compose
+package com.comit.compose.chart
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Button
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.comit.compose.chart.ChartActivity
+import com.comit.compose.ButtonItem
 import com.comit.compose.ui.theme.ComposeTheme
 
-class MainActivity : ComponentActivity() {
+/*
+ * Created by Comit on 2021/8/15.
+ */
+class ChartActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val items = initItems()
         setContent {
             ComposeTheme {
-                Surface(color = MaterialTheme.colors.background) {
-                    ButtonList(items)
-                }
+                ButtonList(items)
             }
         }
     }
@@ -54,10 +54,21 @@ class MainActivity : ComponentActivity() {
     private fun initItems(): List<ButtonItem> {
         val items = arrayListOf<ButtonItem>()
 
-        val item = ButtonItem("Chart") {
-            startActivity(Intent(this, ChartActivity::class.java))
+        var item = ButtonItem("Line Chart") {
+            startActivity(Intent(this, LineChartActivity::class.java))
         }
         items.add(item)
+
+        item = ButtonItem("Bar Chart") {
+           startActivity(Intent(this, BarChartActivity::class.java))
+        }
+        items.add(item)
+
+        item = ButtonItem("Pie Chart") {
+            startActivity(Intent(this, PieChartActivity::class.java))
+        }
+        items.add(item)
+
 
         return items
     }
