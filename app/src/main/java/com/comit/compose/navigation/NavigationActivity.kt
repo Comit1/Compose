@@ -66,6 +66,11 @@ class NavigationActivity : AppCompatActivity() {
         }
         items.add(item)
 
+        item = ButtonItem("Banner") {
+            startActivity(Intent(this, BannerActivity::class.java))
+        }
+        items.add(item)
+
         return items
     }
 }

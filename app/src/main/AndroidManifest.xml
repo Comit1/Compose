@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.comit.compose">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -30,6 +32,7 @@
         <activity android:name=".navigation.NormalNavigationActivity" />
         <activity android:name=".navigation.BottomNavigationActivity" />
         <activity android:name=".navigation.TopNavigationActivity" />
+        <activity android:name=".navigation.BannerActivity" />
 
         <activity android:name=".lifecycle.LifecycleActivity" />
 
