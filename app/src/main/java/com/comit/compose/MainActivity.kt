@@ -2,8 +2,8 @@ package com.comit.compose
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -16,9 +16,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.comit.compose.chart.ChartActivity
+import com.comit.compose.navigation.NavigationActivity
 import com.comit.compose.ui.theme.ComposeTheme
 
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val items = initItems()
@@ -54,8 +55,13 @@ class MainActivity : ComponentActivity() {
     private fun initItems(): List<ButtonItem> {
         val items = arrayListOf<ButtonItem>()
 
-        val item = ButtonItem("Chart") {
+        var item = ButtonItem("Chart") {
             startActivity(Intent(this, ChartActivity::class.java))
+        }
+        items.add(item)
+
+        item = ButtonItem("Navigation") {
+            startActivity(Intent(this, NavigationActivity::class.java))
         }
         items.add(item)
 

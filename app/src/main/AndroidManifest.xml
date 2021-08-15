@@ -26,6 +26,8 @@
         <activity android:name=".chart.BarChartActivity" />
         <activity android:name=".chart.PieChartActivity" />
 
+        <activity android:name=".navigation.NavigationActivity" />
+
     </application>
 
 </manifest>
