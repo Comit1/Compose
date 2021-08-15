@@ -26,13 +26,13 @@ class ChartActivity : AppCompatActivity() {
         val items = initItems()
         setContent {
             ComposeTheme {
-                ButtonList(items)
+                MainView(items)
             }
         }
     }
 
     @Composable
-    private fun ButtonList(items: List<ButtonItem>) {
+    private fun MainView(items: List<ButtonItem>) {
         Column(
             modifier = Modifier
                 .fillMaxWidth(),

@@ -27,6 +27,10 @@
         <activity android:name=".chart.PieChartActivity" />
 
         <activity android:name=".navigation.NavigationActivity" />
+        <activity android:name=".navigation.NormalNavigationActivity" />
+        <activity android:name=".navigation.BottomNavigationActivity" />
+        <activity android:name=".navigation.TopNavigationActivity" />
+
         <activity android:name=".lifecycle.LifecycleActivity" />
 
     </application>

@@ -27,14 +27,14 @@ class MainActivity : AppCompatActivity() {
         setContent {
             ComposeTheme {
                 Surface(color = MaterialTheme.colors.background) {
-                    ButtonList(items)
+                    MainView(items)
                 }
             }
         }
     }
 
     @Composable
-    private fun ButtonList(items: List<ButtonItem>) {
+    private fun MainView(items: List<ButtonItem>) {
         Column(
             modifier = Modifier
                 .fillMaxWidth(),
