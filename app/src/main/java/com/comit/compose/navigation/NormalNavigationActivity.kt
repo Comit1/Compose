@@ -1,6 +1,7 @@
 package com.comit.compose.navigation
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.background
@@ -8,22 +9,31 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
 import androidx.navigation.NavController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navArgument
 import androidx.navigation.compose.rememberNavController
+import com.comit.compose.navigation.viewmodel.NavViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 /*
  * Created by Comit on 2021/8/15.
  *
  * references: https://juejin.cn/post/6983968223209193480#heading-0
  */
+@AndroidEntryPoint
 class NormalNavigationActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -83,6 +93,11 @@ class NormalNavigationActivity : AppCompatActivity() {
 
 @Composable
 fun FirstScreen(navController: NavController) {
+
+    TestViewModel()
+
+//    TestLifecycle()
+
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -101,6 +116,40 @@ fun FirstScreen(navController: NavController) {
 
     }
 
+}
+
+@Composable
+private fun TestLifecycle() {
+    val lifecycleOwner = LocalLifecycleOwner.current
+    Log.d("TTT", "lifecycleOwner: $lifecycleOwner")
+    DisposableEffect(key1 = Unit) {
+        val observer = object : DefaultLifecycleObserver {
+
+            override fun onResume(owner: LifecycleOwner) {
+                Log.d("TTT", "onResume")
+            }
+
+            override fun onPause(owner: LifecycleOwner) {
+                Log.d("TTT", "onPause")
+            }
+
+        }
+        Log.d("TTT", "DisposableEffect")
+        lifecycleOwner.lifecycle.addObserver(observer)
+        onDispose {
+            Log.d("TTT", "onDispose")
+            lifecycleOwner.lifecycle.removeObserver(observer)
+        }
+    }
+}
+
+@Composable
+private fun TestViewModel() {
+    val storeOwner = LocalViewModelStoreOwner.current
+    Log.d("TTT", "storeOwner: $storeOwner")
+//    val navViewModel: NavViewModel = viewModel()
+    val navViewModel: NavViewModel = hiltViewModel()
+    Log.d("TTT", "viewModel: $navViewModel")
 }
 
 @Composable
