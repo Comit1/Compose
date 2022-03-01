@@ -94,6 +94,7 @@ class NormalNavigationActivity : AppCompatActivity() {
 @Composable
 fun FirstScreen(navController: NavController) {
 
+    Log.d("TTT", "FirstScreen")
     TestViewModel()
 
 //    TestLifecycle()
@@ -121,6 +122,7 @@ fun FirstScreen(navController: NavController) {
 @Composable
 private fun TestLifecycle() {
     val lifecycleOwner = LocalLifecycleOwner.current
+    // 每个 Screen 都有自己的 lifecycleOwner，不是使用 Activity 的
     Log.d("TTT", "lifecycleOwner: $lifecycleOwner")
     DisposableEffect(key1 = Unit) {
         val observer = object : DefaultLifecycleObserver {
@@ -129,14 +131,14 @@ private fun TestLifecycle() {
                 Log.d("TTT", "onResume")
             }
 
-            override fun onPause(owner: LifecycleOwner) {
+            override fun onPause(owner: LifecycleOwner) { // 跳到 SecondScreen 也会回调
                 Log.d("TTT", "onPause")
             }
 
         }
         Log.d("TTT", "DisposableEffect")
         lifecycleOwner.lifecycle.addObserver(observer)
-        onDispose {
+        onDispose { // 跳到 SecondScreen 会回调 onDispose 销毁 FirstScreen
             Log.d("TTT", "onDispose")
             lifecycleOwner.lifecycle.removeObserver(observer)
         }
@@ -148,8 +150,9 @@ private fun TestViewModel() {
     val storeOwner = LocalViewModelStoreOwner.current
     Log.d("TTT", "storeOwner: $storeOwner")
 //    val navViewModel: NavViewModel = viewModel()
-    val navViewModel: NavViewModel = hiltViewModel()
+    val navViewModel: NavViewModel = hiltViewModel() // viewModel() 和 hiltViewModel() 表现一样的
     Log.d("TTT", "viewModel: $navViewModel")
+    // 当跳转到 SecondScreen 时销毁 FirstScreen，但 NavViewModel 没回调 onCleared()
 }
 
 @Composable
