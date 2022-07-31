@@ -37,6 +37,8 @@
 
         <activity android:name=".lifecycle.LifecycleActivity" />
 
+        <activity android:name=".layout.LayoutActivity" />
+
     </application>
 
 </manifest>
