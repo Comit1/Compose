@@ -14,6 +14,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.comit.compose.chart.ChartActivity
 import com.comit.compose.lifecycle.LifecycleActivity
@@ -72,5 +73,17 @@ class MainActivity : AppCompatActivity() {
         items.add(item)
 
         return items
+    }
+    
+    @Preview
+    @Composable
+    private fun Preview() {
+        ComposeTheme {
+            ComposeTheme {
+                Surface(color = MaterialTheme.colors.background) {
+                    MainView(items = initItems())
+                }
+            }
+        }
     }
 }
