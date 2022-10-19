@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.comit.compose.chart.ChartActivity
+import com.comit.compose.dialog.DialogActivity
 import com.comit.compose.layout.LayoutActivity
 import com.comit.compose.lifecycle.LifecycleActivity
 import com.comit.compose.navigation.NavigationActivity
@@ -75,6 +76,11 @@ class MainActivity : AppCompatActivity() {
 
         item = ButtonItem("Layout") {
             startActivity(Intent(this, LayoutActivity::class.java))
+        }
+        items.add(item)
+
+        item = ButtonItem("Dialog") {
+            startActivity(Intent(this, DialogActivity::class.java))
         }
         items.add(item)
 

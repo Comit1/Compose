@@ -39,6 +39,8 @@
 
         <activity android:name=".layout.LayoutActivity" />
 
+        <activity android:name=".dialog.DialogActivity" />
+
     </application>
 
 </manifest>
